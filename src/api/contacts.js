@@ -3,5 +3,5 @@ export const fetchContacts = async (url) => {
 
   const jsonObj = await res.json();
 
-  return jsonObj.data;
+  return jsonObj;
 };
