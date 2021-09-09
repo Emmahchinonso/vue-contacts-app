@@ -1,8 +1,8 @@
 <template>
-  <article class="contact-item">
-    <div>
+  <article class="contact-item mb-3">
+    <div class="contact-item__left">
       <h2 class="contact-item__title">{{ contact.first_name }}</h2>
-      <img v-bind:src="avatar" alt="" className="contact-item__img" />
+      <img v-bind:src="contact.avatar" className="contact-item__img" />
     </div>
     <div>
       <router-link v-bind:to="to" class="contact-item__btn btn"
@@ -21,9 +21,8 @@ export default {
     },
   },
   data() {
-    const { avatar, id } = this.contact;
+    const { id } = this.contact;
     return {
-      avatar: avatar,
       to: `/contacts/${id}`,
     };
   },

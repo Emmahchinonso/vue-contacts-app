@@ -1,1 +1,71 @@
 @use "_generic.scss";
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.btn {
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  background-color: rgb(22, 17, 17);
+  color: rgb(231, 229, 229);
+}
+
+.directory {
+  padding: 5rem 1rem;
+}
+
+.directory__btn {
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  @include center;
+}
+
+.results {
+  padding-top: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-item__left {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.contact-item__img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.contact-item__title {
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+
+.contact-item__btn {
+  border-radius: 5px;
+}
+
+.u-bold {
+  font-weight: 600;
+}
+
+.mb-3 {
+  margin-bottom: 2rem;
+}
