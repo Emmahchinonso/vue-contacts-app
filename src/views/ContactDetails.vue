@@ -1,16 +1,18 @@
 <template>
   <div class="container">
-    <img
-      v-bind:src="contacts.avatar"
-      v-bind:alt="contacts.name"
-      class="img-box"
-    />
     <div class="details">
-      <p>
-        <span class="u-bold">Fullname: </span> {{ contacts.first_name }}
-        {{ contacts.last_name }}
-      </p>
-      <p><span class="u-bold">email: </span>{{ contacts.email }}</p>
+      <img
+        v-bind:src="contacts.avatar"
+        v-bind:alt="contacts.name"
+        class="details__img"
+      />
+      <div class="details__content">
+        <p class="mb-1">
+          <span class="u-bold">Fullname: </span> {{ contacts.first_name }}
+          {{ contacts.last_name }}
+        </p>
+        <p><span class="u-bold">Email: </span>{{ contacts.email }}</p>
+      </div>
     </div>
   </div>
 </template>

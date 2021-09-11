@@ -1,8 +1,20 @@
 <template>
-  <main>
-    <div class="directory container">
-      <button @click="handleModal" class="directory__btn btn">+</button>
-      <form v-if="showModal"></form>
+  <main class="container">
+    <section class="directory">
+      <h1 class="directory__title">Contact Directory</h1>
+      <button
+        @click="openModal"
+        title="Add new contact"
+        class="directory__btn btn"
+      >
+        +
+      </button>
+
+      <FormModal
+        v-if="showModal"
+        @closeModal="closeModal"
+        @update="updateContacts"
+      />
 
       <h3 v-if="status === 'loading' || status === 'pending'">Loading...</h3>
 
@@ -13,21 +25,24 @@
       <div v-if="status === 'success'" class="results">
         <ContactList :contacts="contacts" />
       </div>
-    </div>
+    </section>
   </main>
 </template>
 
 <script>
 import ContactList from "../components/ContactList.vue";
+import FormModal from "../components/FormModal.vue";
 import useContactFetcher from "@/api/useContactsFetcher";
-import { toRefs, ref } from "vue";
+import { toRefs, ref, watch } from "vue";
 
 export default {
   name: "ContactDirectory",
-  components: { ContactList },
+  components: { ContactList, FormModal },
   setup() {
-    const state = useContactFetcher("https://reqres.in/api/users");
+    const state = useContactFetcher(process.env.VUE_APP_API_URL);
     const showModal = ref(false);
+
+    watch(state, () => console.log(state.contacts));
 
     return {
       ...toRefs(state),
@@ -35,8 +50,14 @@ export default {
     };
   },
   methods: {
-    handleModal() {
+    openModal() {
       this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    updateContacts(data) {
+      this.contacts = [...this.contacts, data];
     },
   },
 };

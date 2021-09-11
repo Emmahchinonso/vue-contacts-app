@@ -8,10 +8,9 @@ export default function useContactsFetcher(url) {
     state.status = { status: "pending" };
 
     try {
-      const resp = await fetchContacts(url);
-
+      const result = await fetchContacts(url);
       state.status = "success";
-      state.contacts = resp.data;
+      state.contacts = result.data;
     } catch (error) {
       state.status = "error";
       state.error = error;
